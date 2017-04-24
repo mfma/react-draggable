@@ -1,6 +1,6 @@
 {
   "name": "react-draggable-mfma",
-  "version": "0.0.1",
+  "version": "2.2.4",
   "description": "React draggable component",
   "main": "dist/react-draggable.js",
   "browser": "dist/react-draggable.js",
@@ -22,7 +22,7 @@
     "draggable",
     "react-component"
   ],
-  "author": "Matt Zabriskie",
+  "author": "mfma",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/mfma/react-draggable/issues"
