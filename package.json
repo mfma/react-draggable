@@ -1,6 +1,6 @@
 {
-  "name": "react-draggable",
-  "version": "2.2.3",
+  "name": "react-draggable-mfma",
+  "version": "0.0.1",
   "description": "React draggable component",
   "main": "dist/react-draggable.js",
   "browser": "dist/react-draggable.js",
@@ -15,7 +15,7 @@
   "typings": "./index.d.ts",
   "repository": {
     "type": "git",
-    "url": "https://github.com/mzabriskie/react-draggable.git"
+    "url": "https://github.com/mfma/react-draggable.git"
   },
   "keywords": [
     "react",
@@ -25,9 +25,9 @@
   "author": "Matt Zabriskie",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/mzabriskie/react-draggable/issues"
+    "url": "https://github.com/mfma/react-draggable/issues"
   },
-  "homepage": "https://github.com/mzabriskie/react-draggable",
+  "homepage": "https://github.com/mfma/react-draggable",
   "devDependencies": {
     "babel-cli": "^6.10.1",
     "babel-core": "^6.10.4",
