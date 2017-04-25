@@ -15,7 +15,7 @@
   "typings": "./index.d.ts",
   "repository": {
     "type": "git",
-    "url": "https://github.com/mfma/react-draggable.git"
+    "url": "git+https://github.com/mfma/react-draggable.git"
   },
   "keywords": [
     "react",
@@ -73,5 +73,8 @@
   ],
   "dependencies": {
     "classnames": "^2.2.5"
+  },
+  "directories": {
+    "example": "example"
   }
 }

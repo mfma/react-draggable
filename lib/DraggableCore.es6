@@ -2,7 +2,7 @@
 import React, {PropTypes} from 'react';
 import ReactDOM from 'react-dom';
 import {
-	matchesSelectorAndParentsTo, addEvent, removeEvent, addUserSelectStyles, getTouchIdentifier,
+	matchesSelectorAndParentsTo, createCoreEvent,addEvent, removeEvent, addUserSelectStyles, getTouchIdentifier,
 	removeUserSelectStyles, styleHacks
 } from './utils/domFns';
 import {createCoreData, getControlPosition, snapToGrid} from './utils/positionFns';
@@ -266,7 +266,7 @@ export default class DraggableCore extends React.Component {
 		
 		// Get the current drag point from the event. This is used as the offset.
 		const position = getControlPosition(e, this.state.touchIdentifier, this);
-		if (position == null) return;
+		if (position === null) return;
 		let {x, y} = position;
 		
 		// Snap to grid if prop has been provided

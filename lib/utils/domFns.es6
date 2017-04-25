@@ -1,8 +1,26 @@
 // @flow
 import {findInArray, isFunction, int} from './shims';
 import browserPrefix, {getPrefix, browserPrefixToStyle, browserPrefixToKey} from './getPrefix';
-
+import ReactDOM from 'react-dom';
+import type Draggable from '../Draggable';
+import type DraggableCore from '../DraggableCore';
 import type {ControlPosition} from './types';
+export type CoreEvent = {
+	node: HTMLElement,
+	position: {
+		deltaX: number, deltaY: number,
+		lastX: number, lastY: number,
+		clientX: number, clientY: number
+	}
+};
+
+export type UIEvent = {
+	node: HTMLElement,
+	position: {
+		left: number, top: number
+	},
+	deltaX: number, deltaY: number
+};
 
 let matchesSelectorFunc = '';
 export function matchesSelector(el: Node, selector: string): boolean {
@@ -151,4 +169,41 @@ export function styleHacks(childStyle: Object = {}): Object {
     touchAction: 'none',
     ...childStyle
   };
+}
+
+export function createCoreEvent(draggable: DraggableCore, clientX: number, clientY: number): CoreEvent {
+	// State changes are often (but not always!) async. We want the latest value.
+	let state = draggable._pendingState || draggable.state;
+	let isStart = !isNum(state.lastX);
+	
+	return {
+		node: ReactDOM.findDOMNode(draggable),
+		position: isStart ?
+			// If this is our first move, use the clientX and clientY as last coords.
+			{
+				deltaX: 0, deltaY: 0,
+				lastX: clientX, lastY: clientY,
+				clientX: clientX, clientY: clientY
+			} :
+			// Otherwise calculate proper values.
+			{
+				deltaX: clientX - state.lastX, deltaY: clientY - state.lastY,
+				lastX: state.lastX, lastY: state.lastY,
+				clientX: clientX, clientY: clientY
+			}
+	};
+}
+
+// Create an event exposed by <Draggable>
+export function createUIEvent(draggable: Draggable, coreEvent: CoreEvent): UIEvent {
+	const { parentScale = 1 } = draggable.props;
+	return {
+		node: ReactDOM.findDOMNode(draggable),
+		position: {
+			left: draggable.state.clientX + coreEvent.position.deltaX / parentScale,
+			top: draggable.state.clientY + coreEvent.position.deltaY / parentScale
+		},
+		deltaX: coreEvent.position.deltaX / parentScale,
+		deltaY: coreEvent.position.deltaY / parentScale
+	};
 }

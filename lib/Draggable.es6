@@ -3,7 +3,7 @@ import React, {PropTypes} from 'react';
 import ReactDOM from 'react-dom';
 // $FlowIgnore
 import classNames from 'classnames';
-import {createCSSTransform, createSVGTransform} from './utils/domFns';
+import {createUIEvent,createCSSTransform, createSVGTransform} from './utils/domFns';
 import {canDragX, canDragY, createDraggableData, getBoundPosition} from './utils/positionFns';
 import {dontSetMe} from './utils/shims';
 import DraggableCore from './DraggableCore';
